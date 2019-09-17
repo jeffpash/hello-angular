@@ -1,0 +1,13 @@
+h1{
+    font-family: serif;
+    font-style: italic;
+    color: blue;
+}
+h3{
+    text-decoration: underline;
+}
+.main{
+    background: #e1e7cd;
+    /* text-align: center; */
+    padding: 5em;
+}

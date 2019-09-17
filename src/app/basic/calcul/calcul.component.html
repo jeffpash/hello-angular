@@ -1,0 +1,23 @@
+<div class="main">
+<p>calcul works!</p>
+x: <input type="text" [(ngModel)]="x" /> <br>
+n: <input type="text" [(ngModel)]="n" 
+(keyup)="calculer()"/> <br>
+<br>
+<input type="button" value="calculer x puissance n"
+(click) = "calculer()" /> <br>
+
+<div *ngIf="res">
+    <b>resultat = <span [class.changer]="res>=100">{{ res }}</span> </b>
+</div>
+<br>
+<div>
+    <input type="checkbox" [(ngModel)]="detail">toggle resultat
+</div>
+
+<ul [style.display] = " detail ? 'block' : 'none' ">
+    <li *ngFor="let ans of tabRes">{{ ans }}</li>
+</ul>
+<p>*********µµµµ**********</p>
+
+</div>
