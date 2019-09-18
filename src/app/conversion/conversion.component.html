@@ -1,0 +1,31 @@
+Montant: <input type="text" [(ngModel)]="montant"> <br>
+MonnaieSorce : <select [(ngModel)]="codeMonnaieSource">
+    <option *ngFor="let d of listeDevises">
+        {{d.code}}
+    </option>
+</select><br>
+MonnaieCible : <select [(ngModel)]="codeMonnaieCible">
+    <option *ngFor="let d of listeDevises">
+        {{d.code}}
+    </option>
+</select><br>
+<input type="button" (click)="calculerConversion()" value="convertir"><br>
+resultat = {{resultat}}
+<hr />
+
+<table border="1">
+    <tr>
+        <th>code</th><th>monnaie</th><th>change</th>
+    </tr>
+    <tr *ngFor="let d of listeDevises">
+        <td>
+            {{d.code}}
+        </td>
+        <td>
+            {{d.name}}
+        </td>
+        <td>
+            {{d.change}}
+        </td>
+    </tr>
+</table>

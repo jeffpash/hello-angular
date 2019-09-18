@@ -13,6 +13,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AppRoutingModule } from 'src/app-routing.module';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CalcTVAComponent } from './calc-tva/calc-tva.component';
+import { TogglePanelComponent } from './toggle-panel/toggle-panel.component';
+import { ConversionComponent } from './conversion/conversion.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { CalcTVAComponent } from './calc-tva/calc-tva.component';
     CalculComponent,
     LoginComponent,
     WelcomeComponent,
-    CalcTVAComponent
+    CalcTVAComponent,
+    TogglePanelComponent,
+    ConversionComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,18 @@
 <div class="main">
-  <app-header></app-header>
+  <app-header [heading]="title"></app-header>
 
   <router-outlet></router-outlet>
 
+  <app-toggle-panel [title]=" 'panel1' ">
+  <!-- ou ... , vu comme ng-content dans toggle-panel -->
+  <tabset>
+      <tab heading="one">One</tab>
+      <tab heading="Two">Two</tab>
+      <tab heading="Three">Three</tab>
+    </tabset>
+  </app-toggle-panel>
+  <app-toggle-panel [title]=" 'panel2' ">
+    <div>contenu du paneau 2</div> <!-- vu comme ng-content dans toggle-panel....html  -->
+  </app-toggle-panel> 
   <app-footer></app-footer>
 </div>

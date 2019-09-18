@@ -7,6 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalcTVAComponent implements OnInit {
 
+  ht: number;
+  taux: number = 20;
+  tva: number;
+  ttc: number;
+
+  calculer(){
+    this.tva = this.ht * this.taux / 100;
+    this.ttc = Number(this.ht) + this.tva;
+  }
+
   constructor() { }
 
   ngOnInit() {
