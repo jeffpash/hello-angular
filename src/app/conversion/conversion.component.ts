@@ -13,15 +13,18 @@ export class ConversionComponent implements OnInit {
   codeMonnaieSource: string = "EUR";
   codeMonnaieCible: string = "USD";
   resultat: number;
+  errorMsg : string = null;
   listeDevises: Devise[]; //or :Array<Devise>
 
   calculerConversion() {
+    this.errorMsg = null;
     this.deviseService.convertir(this.montant, this.codeMonnaieSource, this.codeMonnaieCible)
     .subscribe(
       (montantConvertir : number) => {
         this.resultat = montantConvertir;
       },
       (err) => {console.log(err);
+        this.errorMsg = "There is a problem, please try later!!";
       }
     );
   }
@@ -34,7 +37,9 @@ export class ConversionComponent implements OnInit {
       (devises : Devise[])=> { 
         this.listeDevises = devises;
       },
-      (err) => { console.log(err);}
+      (err) => { console.log(err);
+      this.errorMsg = "There is a problem, please try later!!";
+      }
     );
   }
 

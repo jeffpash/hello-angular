@@ -1,11 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Devise } from '../data/devise';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeviseService {
+
+  constructor(private http: HttpClient) {}
+
+  
+  public rechercherDevises(): Observable<Devise[]> {
+    // return of(this.tabDevise);
+    let url = "./devise-api/public/devise";
+    return this.http.get<Devise[]>(url);
+   }
+  
 
   //before http request
   private tabDevise: Devise[] = [
@@ -16,27 +28,29 @@ export class DeviseService {
     //0.9 euro pour 1 dollar
   ];
 
-  public rechercherDevises(): Observable<Devise[]> {
-    return of(this.tabDevise);
-  }
-
   public convertir(
     montant: number,
     codeMonnaieSource: string,
     codeMonnaieCible: string): Observable<number> {
-    let res = 1;
-    //code temp sans http
-    let deviseCible = null;
-    let deviseSource = null;
-    for (let d of this.tabDevise) {
-      if (d.code == codeMonnaieSource)
-        deviseSource = d;
-      if (d.code==codeMonnaieCible)
-        deviseCible= d;
-    }
-    res = montant * deviseCible.change / deviseSource.change;
-    return of(res);
+    //let res = 1;
+    let url =`
+    ./devise-api/public/convert?source=${codeMonnaieSource}&target=${codeMonnaieCible}&amount=${montant}
+    `;
+    return this.http.get<object>(url)
+    .pipe(
+      map((responseObject) => {return responseObject["result"];})
+    );
+    // //code temp sans http
+    // let deviseCible = null;
+    // let deviseSource = null;
+    // for (let d of this.tabDevise) {
+    //   if (d.code == codeMonnaieSource)
+    //     deviseSource = d;
+    //   if (d.code==codeMonnaieCible)
+    //     deviseCible= d;
+    // }
+    // res = montant * deviseCible.change / deviseSource.change;
+    // return of(res);
   }
 
-  constructor() { }
 }

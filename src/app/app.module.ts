@@ -15,6 +15,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { CalcTVAComponent } from './calc-tva/calc-tva.component';
 import { TogglePanelComponent } from './toggle-panel/toggle-panel.component';
 import { ConversionComponent } from './conversion/conversion.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ConversionComponent } from './conversion/conversion.component';
     FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

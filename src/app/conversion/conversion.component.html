@@ -10,12 +10,15 @@ MonnaieCible : <select [(ngModel)]="codeMonnaieCible">
     </option>
 </select><br>
 <input type="button" (click)="calculerConversion()" value="convertir"><br>
-resultat = {{resultat}}
+<span class="error">{{errorMsg}}</span>
+resultat = {{resultat | number:'1.0-2'}}
 <hr />
 
 <table border="1">
     <tr>
-        <th>code</th><th>monnaie</th><th>change</th>
+        <th>code</th>
+        <th>monnaie</th>
+        <th>change</th>
     </tr>
     <tr *ngFor="let d of listeDevises">
         <td>
