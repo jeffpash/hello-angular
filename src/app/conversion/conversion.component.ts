@@ -16,16 +16,30 @@ export class ConversionComponent implements OnInit {
   listeDevises: Devise[]; //or :Array<Devise>
 
   calculerConversion() {
-   this.resultat = this.deviseService.convertir(this.montant, this.codeMonnaieSource, this.codeMonnaieCible);
+    this.deviseService.convertir(this.montant, this.codeMonnaieSource, this.codeMonnaieCible)
+    .subscribe(
+      (montantConvertir : number) => {
+        this.resultat = montantConvertir;
+      },
+      (err) => {console.log(err);
+      }
+    );
   }
 
   constructor(private deviseService: DeviseService) {
     //this.deviseService is attribute of current class (typescript)
     //since ConversionComponent is decorated by @component, deviseService is auto injected
-    this.listeDevises = deviseService.rechercherDevise();
+    deviseService.rechercherDevises()
+    .subscribe(
+      (devises : Devise[])=> { 
+        this.listeDevises = devises;
+      },
+      (err) => { console.log(err);}
+    );
   }
 
   ngOnInit() {
+    
   }
 
 }
