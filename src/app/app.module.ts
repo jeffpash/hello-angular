@@ -15,7 +15,11 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { CalcTVAComponent } from './calc-tva/calc-tva.component';
 import { TogglePanelComponent } from './toggle-panel/toggle-panel.component';
 import { ConversionComponent } from './conversion/conversion.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AdminDeviseComponent } from './admin-devise/admin-devise.component';
+import { MyAuthInterceptor } from './common/interseptor';
+import { ProductsComponent } from './products/products.component';
+import { ProductListComponent } from './products/product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,10 @@ import { HttpClientModule } from '@angular/common/http';
     WelcomeComponent,
     CalcTVAComponent,
     TogglePanelComponent,
-    ConversionComponent
+    ConversionComponent,
+    AdminDeviseComponent,
+    ProductsComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +45,10 @@ import { HttpClientModule } from '@angular/common/http';
     TabsModule.forRoot(),
     HttpClientModule
   ],
-  providers: [],
+  providers:  [{   
+     provide: HTTP_INTERCEPTORS,    
+     useClass: MyAuthInterceptor,    
+     multi: true  }], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }

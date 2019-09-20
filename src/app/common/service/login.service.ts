@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoginResponse } from '../data/loginResponse';
+import { tap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,13 @@ export class LoginService {
       roles: roles
     };
     let url = "./login-api/public/auth";
-    return this.http.post<LoginResponse>(url, requestObject, {headers: this._headers});
+    return this.http.post<LoginResponse>(url, requestObject, {headers: this._headers})
+    .pipe(
+      tap(
+        (loginResponse : LoginResponse) => {
+          sessionStorage.setItem('token', loginResponse.token);
+        }
+      )
+    ); 
   }
 }

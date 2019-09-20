@@ -17,6 +17,11 @@ export class DeviseService {
     let url = "./devise-api/public/devise";
     return this.http.get<Devise[]>(url);
    }
+
+   public deleteDevise(codeDevise : string) : Observable<any>{
+     let url = `./devise-api/private/role_admin/devise/${codeDevise}`;
+     return this.http.delete(url);
+   }
   
 
   //before http request
